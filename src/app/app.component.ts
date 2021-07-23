@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import * as Tokens from '@app/tokens';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'config-validator';
+
+  constructor(
+    @Inject(Tokens.CONFIG) public config: Config
+  ) {}
 }
