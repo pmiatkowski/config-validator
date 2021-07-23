@@ -11,5 +11,8 @@ export class AppComponent {
 
   constructor(
     @Inject(Tokens.CONFIG) public config: Config
-  ) {}
+  ) {
+
+    console.warn(window.__CONFIG);
+  }
 }

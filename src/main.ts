@@ -5,16 +5,29 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import * as Tokens from '@app/tokens';
-import { config } from '@app/config';
+import { readConfigs, defaultConfigMap, defaultConfigProcessor } from '@app/config';
 
 if (environment.production) {
   enableProdMode();
 }
 
+
+
+(async function initApplication() {
+/** Agregated config maps */
+const configsMap = {
+  ...defaultConfigMap,
+}
+
+const configs = await readConfigs(configsMap);
+console.warn('WHAT ARE CONFIGS:', configs)
 platformBrowserDynamic([
   {
     provide: Tokens.CONFIG,
-    useValue: config,
+    useValue: defaultConfigProcessor(configs.defaultConfig),
   }
-]).bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+]).bootstrapModule(AppModule).catch(err => console.error(err));
+})()
+
+
+

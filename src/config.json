@@ -1,0 +1,7 @@
+{
+  "simpleString": "abc",
+  "simpleNumber": 123,
+  "simpleBoolean": false,
+  "simpleShouldBeString": 1222222,
+  "arrayOfStrings": ["1", ""]
+}
